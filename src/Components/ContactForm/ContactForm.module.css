@@ -1,0 +1,13 @@
+/* .form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+} */
+
+.formInput {
+  display: block;
+  margin: 10px;
+}
+.formItem,
+.formButton {
+  margin: 10px;
+}
