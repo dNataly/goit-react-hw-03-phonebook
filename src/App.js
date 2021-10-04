@@ -34,6 +34,8 @@ class App extends Component {
 
   getFilteredContact = () => {
     const { contacts, filter } = this.state;
+
+    console.log(contacts);
     return contacts.filter((contact) =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
@@ -49,6 +51,22 @@ class App extends Component {
       contacts: contacts.filter((contact) => contact.id !== id),
     }));
   };
+
+  componentDidMount() {
+    const contacts = localStorage.getItem("contacts");
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+      console.log(this.state.contacts);
+    }
+  }
 
   render() {
     return (
